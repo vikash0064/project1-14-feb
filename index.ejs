@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Digital Time Capsule</title>
+</head>
+
+<body>
+
+    <h2>Digital Time Capsule</h2>
+
+    <% if(error){ %>
+        <p style="color:red">
+            <%= error %>
+        </p>
+        <% } %>
+
+            <form action="/add" method="POST">
+                <textarea name="message" placeholder="Enter message" required
+                    style="width: 300px; height: 100px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea><br><br>
+                <input type="datetime-local" name="time" required style="padding: 5px;"><br><br>
+                <button
+                    style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Schedule
+                    Message</button>
+            </form>
+
+            <h3>All Messages</h3>
+
+            <ul>
+                <% messages.forEach(function(msg, idx){ %>
+                    <li>
+                        <a href="/message/<%= msg.id %>">Message <%= idx+1 %></a>
+                        <% if(!msg.visible){ %> 🔒 <% } %>
+                    </li>
+                    <% }) %>
+            </ul>
+
+</body>
+
+</html>

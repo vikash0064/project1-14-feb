@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Message</title>
+</head>
+
+<body>
+
+    <h2>Message Details</h2>
+
+    <% if(msg.visible){ %>
+
+        <p><b>Message:</b></p>
+        <p>
+            <%= msg.text %>
+        </p>
+
+        <p>
+            <small>Released at: <%= new Date(msg.time).toLocaleString() %></small>
+        </p>
+
+        <form action="/delete/<%= msg.id %>" method="POST" style="display:inline;">
+            <button
+                style="background-color: #dc3545; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer;">Delete</button>
+        </form>
+
+        <% } else { %>
+
+            <p>🔒 This message is locked.</p>
+            <p>Unlocks at: <%= new Date(msg.time).toLocaleString() %>
+            </p>
+
+            <% } %>
+                <br>
+                <a href="/">⬅ Back</a>
+
+</body>
+
+</html>
